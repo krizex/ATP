@@ -1,6 +1,5 @@
 import sys
-from atp.data_process import processDataByFile
-
+from data_process import processDataByFile
 
 if __name__ == '__main__':
     searchResultFile = sys.argv[1]
