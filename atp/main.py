@@ -1,6 +1,7 @@
-import SzAirline
+import sys
+from atp.data_process import processDataByFile
 
 
 if __name__ == '__main__':
-    szAirline = SzAirline.SzAirline()
-    szAirline.getData()
+    searchResultFile = sys.argv[1]
+    processDataByFile(searchResultFile)
