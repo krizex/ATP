@@ -1,4 +1,4 @@
-from atp import qunar
+import qunar
 import time
 
 def processDataByFile(fileName):
