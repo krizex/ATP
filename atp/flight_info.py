@@ -29,12 +29,12 @@ class FlightInfoHandler:
                   
     def insertOneRec(self, flightInfo):
         cursor = self.conn.cursor()
-#         try:
-        print flightInfo.asRec()
-        cursor.execute(self.INSERT_SQL, flightInfo.asRec())
-        self.conn.commit()
-#         except:
-        self.conn.rollback()
+        try:
+            cursor.execute(self.INSERT_SQL, flightInfo.asRec())
+            self.conn.commit()
+        except:
+            print "insert failed"
+            self.conn.rollback()
             
         cursor.close()
             
