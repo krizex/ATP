@@ -15,6 +15,12 @@ var queryUrl = "http://flight.qunar.com/site/oneway_list.htm?searchDepartureAirp
 
 casper.echo("URL: " + queryUrl)
 
+casper.on('page.resource.requested', function(requestData, request) {
+    if (requestData.url.indexOf('dis.cn.criteo.com') > 0) {
+        request.abort();
+    }
+});
+
 casper.start(queryUrl)
 
 casper.waitWhileSelector('.loading', function() {
