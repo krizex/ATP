@@ -14,7 +14,7 @@ function main
         return 1
     fi
 
-    python ${ANALYSIS_SCRIPT} "searchResult.html"
+    python ${ANALYSIS_SCRIPT} "searchResult.html" "${curDate}"
 }
 
 main
