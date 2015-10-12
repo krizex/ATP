@@ -4,6 +4,6 @@
 
 cd ~/dev/ATP/launch
 
-echo "`date +'%Y-%m-%d %H:%M:%S'`" >> tmp.log
+#echo "`date +'%Y-%m-%d %H:%M:%S'`" >> tmp.log
 
-#./startCollect.sh
+./startCollect.sh
