@@ -25,16 +25,16 @@ def searchOne(casperScript, dep, arr, depDate):
     return ret
 
 def main():
-    if len(sys.argv) != 1:
+    if len(sys.argv) != 2:
         print "Usage: "
         return 1
     
     casperScript = sys.argv[1]
     
     arAirport = getAllAirport()
-    for i in len(arAirport):
+    for i in range(len(arAirport)):
         dep = arAirport[i]
-        for j in len(arAirport):
+        for j in range(len(arAirport)):
             if i == j:
                 continue
             
