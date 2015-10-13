@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+
 ROOT_DIR="`pwd`/.."
 CAPTURE_SCRIPT="${ROOT_DIR}/casperjs/qunar.js"
 ANALYSIS_SCRIPT="${ROOT_DIR}/atp/main.py"
@@ -21,7 +23,7 @@ function main
 		ok=0
 		while [ ${retryTime} -lt 5 ];do
 			retryTime=`expr ${retryTime} + 1`
-			casperjs ${CAPTURE_SCRIPT} ${searchDate}
+			/usr/local/bin/casperjs ${CAPTURE_SCRIPT} ${searchDate}
 		    if [ $? -ne 0 ];then
 		        log "[${retryTime}] search by day[${searchDate}] failed"
 		        continue
@@ -36,7 +38,7 @@ function main
 			continue
 		fi
 	
-	    python ${ANALYSIS_SCRIPT} "searchResult.html" "${searchDate}"
+	    /usr/bin/python ${ANALYSIS_SCRIPT} "searchResult.html" "${searchDate}"
 	    log "search date[${searchDate}] succeed."
 	done
 }
