@@ -7,12 +7,15 @@ var casper = require('casper').create({
     }
 });
 
-
-var queryDate = casper.cli.get(0)
+var depCode = casper.cli.get(0)
+var depAirport = casper.cli.get(1)
+var arrCode = casper.cli.get(2)
+var arrAirport = casper.cli.get(3)
+var queryDate = casper.cli.get(4)
 
 var fs = require('fs');
 
-var queryUrl = "http://flight.qunar.com/site/oneway_list.htm?searchDepartureAirport=%E5%8D%97%E4%BA%AC&searchArrivalAirport=%E5%A4%A7%E8%BF%9E&searchDepartureTime=" + queryDate + "&startSearch=true&fromCode=NKG&toCode=DLC&from=qunarindex&lowestPrice=null"
+var queryUrl = "http://flight.qunar.com/site/oneway_list.htm?searchDepartureAirport=" + depAirport + "&searchArrivalAirport=" + arrAirport + "&searchDepartureTime=" + queryDate + "&startSearch=true&fromCode=" + depCode + "&toCode=" + arrCode + "&from=qunarindex&lowestPrice=null"
 
 casper.echo("URL: " + queryUrl)
 
@@ -26,7 +29,7 @@ casper.start(queryUrl)
 
 casper.waitWhileSelector('.loading', function() {
     //this.echo(this.getPageContent())
-    fs.write('searchResult.html', this.getPageContent(), 'w')
+    fs.write('/tmp/searchResult.html', this.getPageContent(), 'w')
 });
 
 casper.run();
