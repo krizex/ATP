@@ -12,7 +12,7 @@ def searchRange(casperScript, dep, arr, dateRange):
         for i in range(5):
             ret = searchOne(casperScript, dep, arr, curTime.strftime("%Y-%m-%d"))
             if ret == 0:
-                print "{} -> {} : {}".format(dep[0], arr[0], curTime.strftime("%Y-%m-%d"))
+                print "[{}] {} -> {} : {}".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), dep[0], arr[0], curTime.strftime("%Y-%m-%d"))
                 break
     
 #dep = (depCode, depAirport)
