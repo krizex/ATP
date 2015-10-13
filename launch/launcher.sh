@@ -1,9 +1,10 @@
 #!/bin/bash
 
 . ~/.bashrc
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 
-cd ~/dev/ATP/launch
+cd ~/dev/ATP/atp
 
 #echo "`date +'%Y-%m-%d %H:%M:%S'`" >> tmp.log
 
-./startCollect.sh
+python startWork.py ../casperjs/qunar.js

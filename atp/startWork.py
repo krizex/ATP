@@ -9,7 +9,10 @@ def searchRange(casperScript, dep, arr, dateRange):
     d = datetime.timedelta(days=1)
     for i in range(dateRange):
         curTime = curTime + d
-        searchOne(casperScript, dep, arr, curTime.strftime("%Y-%m-%d"))
+        for i in range(5):
+            ret = searchOne(casperScript, dep, arr, curTime.strftime("%Y-%m-%d"))
+            if ret == 0:
+                break
     
 #dep = (depCode, depAirport)
 def searchOne(casperScript, dep, arr, depDate):
@@ -19,14 +22,12 @@ def searchOne(casperScript, dep, arr, depDate):
         print "Execute command[{}] failed, errCode: {}, errMsg: {}".format(cmd, ret, out)
         return ret
     
-    raise Exception()
-    
     ret = processDataByFile("/tmp/searchResult.html", depDate)
     return ret
 
 def main():
     if len(sys.argv) != 2:
-        print "Usage: "
+        print "Usage: {} casperjs_script".format(sys.argv[0])
         return 1
     
     casperScript = sys.argv[1]
@@ -41,7 +42,6 @@ def main():
             arr = arAirport[j]
             
             searchRange(casperScript, dep, arr, 60)
-            
     
     return 0
             
