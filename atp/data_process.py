@@ -3,7 +3,7 @@ import time
 from dbc import DB
 from flight_info import FlightInfoHandler, FlightInfo
 
-def processDataByFile(fileName, flightDate):
+def processDataByFile(fileName, depDate):
     curDateTime =  time.localtime(time.time())
     
     queryDate = time.strftime('%Y-%m-%d', curDateTime)
@@ -20,7 +20,7 @@ def processDataByFile(fileName, flightDate):
     handler = FlightInfoHandler(conn)
     
     for rec in retList:
-        flightInfo = FlightInfo(queryDate, queryTime, flightDate, rec)
+        flightInfo = FlightInfo(queryDate, queryTime, depDate, rec)
         handler.insertOneRec(flightInfo)
         
     return 0
