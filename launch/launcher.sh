@@ -7,4 +7,4 @@ cd ~/dev/ATP
 
 #echo "`date +'%Y-%m-%d %H:%M:%S'`" >> tmp.log
 
-python atp/startWork.py ../casperjs/qunar.js >> launch/run.log 2>&1
+python atp/startWork.py casperjs/qunar.js >> launch/run.log 2>&1

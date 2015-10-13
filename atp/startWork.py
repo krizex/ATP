@@ -23,6 +23,7 @@ def searchOne(casperScript, dep, arr, depDate):
         print "Execute command[{}] failed, errCode: {}, errMsg: {}".format(cmd, ret, out)
         return ret
     
+    print "Execute command[{}] succeed, Msg: {}".format(cmd, out)
     ret = processDataByFile("/tmp/searchResult.html", depDate)
     return ret
 
