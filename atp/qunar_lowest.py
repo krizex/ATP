@@ -49,6 +49,7 @@ class QunarLowest:
                 self.dbHandle.insertOneRec(info)
                 
 if __name__ == '__main__':
-    q = QunarLowest(None, getAllAirport())
+    db = DB('atp', 'atp', 'atp')
+    q = QunarLowest(db.getConn(), getAllAirport())
     q.crawlAllAirlines()
         
