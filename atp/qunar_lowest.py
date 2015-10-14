@@ -25,7 +25,6 @@ class QunarLowest:
                 
                 startDate = datetime.datetime.today() + datetime.timedelta(days=1)
                 self.crawlOneAirline(dep, arr, startDate.strftime("%Y-%m-%d"), 60)
-                return 1
     
     def crawlOneAirline(self, depInfo, arrInfo, startDate, dateRange):
         curDateTime =  time.localtime(time.time())
@@ -33,6 +32,7 @@ class QunarLowest:
         queryTime = time.strftime('%H:%M:%S', curDateTime)
         urlBase = "http://flight.qunar.com/twell/flight/farecast.jsp?departureCity={}&arrivalCity={}&nextNDays=0&departureDate={}&searchType=OnewayFlight&searchLangs=zh&locale=zh&serverIP=twell4&allowOld=true&queryID=127.0.0.1%3A1c1ea29%3A113aed2be0b%3A-7bfb&dayNum={}&pageNum=0"
         url = urlBase.format(depInfo[1], arrInfo[1], startDate, dateRange)
+        print url
         r = requests.get(url)
         if r.status_code != 200:
             print "[{}] {} -> {} failed".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0])
