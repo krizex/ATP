@@ -77,10 +77,10 @@ class FlightLowestPriceInfoHandler:
                   dep_time, arr_time, carrier, vendor_name, ticket_price) \
                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %d)"
                   
-    def insertOneRec(self, flightInfo):
+    def insertOneRec(self, info):
         cursor = self.conn.cursor()
         try:
-            cursor.execute(self.INSERT_SQL, flightInfo.asRec())
+            cursor.execute(self.INSERT_SQL, info.asRec())
             self.conn.commit()
         except:
             print "insert failed"

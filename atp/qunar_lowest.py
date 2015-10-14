@@ -46,6 +46,7 @@ class QunarLowest:
                 d = airline.attrs
                 info = FlightLowestPriceInfo(queryDate, queryTime, depInfo[0], arrInfo[0], (d['date'], d['code'], d['depTime'], d['arrTime'], d['carrier'], d['vendorName'], d['price']))
                 print info.asRec()
+                self.dbHandle.insertOneRec(info)
                 
 if __name__ == '__main__':
     q = QunarLowest(None, getAllAirport())
