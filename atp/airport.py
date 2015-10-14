@@ -152,7 +152,7 @@ def getAllAirport():
 'ZUH','ZHUHAI珠海',
 'ZYI','ZUNYI遵义']
     
-    arAddress = ['HGH','HANGZHOU杭州', 'XMN','XIAMEN厦门']
+#     arAddress = ['HGH','HANGZHOU杭州', 'XMN','XIAMEN厦门']
     arResult = []
     for i in range(0, len(arAddress), 2):
         arResult.append((arAddress[i], re.sub('[A-Z]', '', arAddress[i+1])))

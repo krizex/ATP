@@ -53,7 +53,7 @@ class FlightLowestPriceInfo:
         self.vendorName, \
         self.ticketPrice = map(lambda x: '' if not x else x.encode('utf8'), rec)
         
-        self.ticketPrice = int(float(self.ticketPrice))
+        self.ticketPrice = str(int(float(self.ticketPrice)))
         
     def asRec(self):
         return (self.queryDate,
@@ -75,7 +75,7 @@ class FlightLowestPriceInfoHandler:
     
     INSERT_SQL = "INSERT INTO FLIGHT_LOWEST_PRICE_INFO (query_date, query_time, dep_code, arr_code, flight_date, flight_number, \
                   dep_time, arr_time, carrier, vendor_name, ticket_price) \
-                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %d)"
+                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
                   
     def insertOneRec(self, info):
         cursor = self.conn.cursor()

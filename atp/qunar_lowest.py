@@ -35,18 +35,17 @@ class QunarLowest:
         url = urlBase.format(depInfo[1], arrInfo[1], startDate, dateRange)
         r = requests.get(url)
         if r.status_code != 200:
+            print "[{}] {} -> {} failed".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0])
             return 1
         
-        print url
-    #     print r.text
+        print "[{}] {} -> {}".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0])
         bs = BeautifulSoup(r.text, 'lxml-xml')
-    #     print bs.ResultData
         resultData = bs.find('ResultData')
         for airline in resultData.children:
             if airline.name == 'lowestPrice':
                 d = airline.attrs
                 info = FlightLowestPriceInfo(queryDate, queryTime, depInfo[0], arrInfo[0], (d['date'], d['code'], d['depTime'], d['arrTime'], d['carrier'], d['vendorName'], d['price']))
-                print info.asRec()
+#                 print info.asRec()
                 self.dbHandle.insertOneRec(info)
                 
 if __name__ == '__main__':
