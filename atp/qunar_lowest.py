@@ -6,6 +6,7 @@ from airport import getAllAirport
 import datetime
 from flight_info import FlightLowestPriceInfoHandler, FlightLowestPriceInfo
 import time
+from dbc import DB
 
 class QunarLowest:
     def __init__(self, conn, allAirports):

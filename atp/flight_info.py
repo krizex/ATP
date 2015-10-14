@@ -73,9 +73,9 @@ class FlightLowestPriceInfoHandler:
     def __init__(self, conn):
         self.conn = conn
     
-    INSERT_SQL = "INSERT INTO FLIGHT_LOWEST_PRICE_INFO (query_date, query_time, flight_date, flight_number, \
+    INSERT_SQL = "INSERT INTO FLIGHT_LOWEST_PRICE_INFO (query_date, query_time, dep_code, arr_code, flight_date, flight_number, \
                   dep_time, arr_time, carrier, vendor_name, ticket_price) \
-                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %d)"
+                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %d)"
                   
     def insertOneRec(self, info):
         cursor = self.conn.cursor()
