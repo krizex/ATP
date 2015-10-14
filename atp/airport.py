@@ -10,8 +10,7 @@ def getAllAirport():
 'BSD','BAOSHAN保山',
 'BAV','BAOTOU包头',
 'BHY','BEIHAI北海',
-'PEK','BEIJING北京首都机场',
-'NAY','BEIJING北京南苑',
+'PEK','BEIJING北京',
 'BFU','BENGBU蚌埠',
 'CGQ','CHANGCHUN长春',
 'CGD','CHANGDE常德',
@@ -100,8 +99,7 @@ def getAllAirport():
 'JJN','QUANZHOU泉州',
 'JUZ','QUZHOU衢州',
 'SYX','SANYA三亚',
-'SHA','SHANGHAI上海虹桥',
-'PVG','SHANGHAI上海浦东',
+'SHA','SHANGHAI上海',
 'SWA','SHANTOU汕头',
 'SHS','SHASHI沙市',
 'SZX','SHENZHEN深圳',
@@ -154,6 +152,7 @@ def getAllAirport():
 'ZUH','ZHUHAI珠海',
 'ZYI','ZUNYI遵义']
     
+    arAddress = ['HGH','HANGZHOU杭州', 'XMN','XIAMEN厦门']
     arResult = []
     for i in range(0, len(arAddress), 2):
         arResult.append((arAddress[i], re.sub('[A-Z]', '', arAddress[i+1])))

@@ -38,3 +38,52 @@ class FlightInfoHandler:
             
         cursor.close()
             
+class FlightLowestPriceInfo:
+    def __init__(self, queryDate, queryTime, depCode, arrCode, rec):
+        #flightNo, depTime, depAirport, arrTime, arrAirport, elapsedTime, ptyRate, delayTime, ticketPrice)
+        self.queryDate = queryDate
+        self.queryTime = queryTime
+        self.depCode = depCode
+        self.arrCode = arrCode
+        self.flightDate, \
+        self.flightNo, \
+        self.depTime, \
+        self.arrTime, \
+        self.carrier, \
+        self.vendorName, \
+        self.ticketPrice = map(lambda x: '' if not x else x.encode('utf8'), rec)
+        
+        self.ticketPrice = int(float(self.ticketPrice))
+        
+    def asRec(self):
+        return (self.queryDate,
+                self.queryTime,
+                self.depCode,
+                self.arrCode,
+                self.flightDate, \
+                self.flightNo, \
+                self.depTime, \
+                self.arrTime, \
+                self.carrier, \
+                self.vendorName, \
+                self.ticketPrice)
+        
+    
+class FlightLowestPriceInfoHandler:
+    def __init__(self, conn):
+        self.conn = conn
+    
+    INSERT_SQL = "INSERT INTO FLIGHT_LOWEST_PRICE_INFO (query_date, query_time, flight_date, flight_number, \
+                  dep_time, arr_time, carrier, vendor_name, ticket_price) \
+                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %d)"
+                  
+    def insertOneRec(self, flightInfo):
+        cursor = self.conn.cursor()
+        try:
+            cursor.execute(self.INSERT_SQL, flightInfo.asRec())
+            self.conn.commit()
+        except:
+            print "insert failed"
+            self.conn.rollback()
+            
+        cursor.close()
