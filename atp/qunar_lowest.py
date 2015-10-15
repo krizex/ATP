@@ -33,7 +33,12 @@ class QunarLowest:
         urlBase = "http://flight.qunar.com/twell/flight/farecast.jsp?departureCity={}&arrivalCity={}&nextNDays=0&departureDate={}&searchType=OnewayFlight&searchLangs=zh&locale=zh&serverIP=twell4&allowOld=true&queryID=127.0.0.1%3A1c1ea29%3A113aed2be0b%3A-7bfb&dayNum={}&pageNum=0"
         url = urlBase.format(depInfo[1], arrInfo[1], startDate, dateRange)
         print url
-        r = requests.get(url)
+        try:
+            r = requests.get(url, timeout=10)
+        except:
+            print "[{}] {} -> {} timeout".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0])
+            return 2
+            
         if r.status_code != 200:
             print "[{}] {} -> {} failed".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0])
             return 1
@@ -44,7 +49,16 @@ class QunarLowest:
         for airline in resultData.children:
             if airline.name == 'lowestPrice':
                 d = airline.attrs
-                info = FlightLowestPriceInfo(queryDate, queryTime, depInfo[0], arrInfo[0], (d['date'], d['code'], d['depTime'], d['arrTime'], d['carrier'], d['vendorName'], d['price']))
+                allAttrs = ('date', 'code', 'depTime', 'arrTime', 'carrier', 'vendorName', 'price')
+                attrOK = True
+                for attr in allAttrs:
+                    if attr not in d:
+                        attrOK = False
+                        break
+                if not attrOK:
+                    continue        
+                    
+                info = FlightLowestPriceInfo(queryDate, queryTime, depInfo[0], arrInfo[0], [d[x] for x in allAttrs])
 #                 print info.asRec()
                 self.dbHandle.insertOneRec(info)
                 
