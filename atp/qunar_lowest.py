@@ -49,7 +49,7 @@ class QunarLowest:
                 
                 startDate = datetime.datetime.today() + datetime.timedelta(days=1)
                 if ER_SUCC != self.crawlOneAirline(dep, arr, startDate.strftime("%Y-%m-%d")):
-                    self.lstFailAirline.append(dep, arr)
+                    self.lstFailAirline.append((dep, arr))
                 
     @timeLimitExecute(20)
     def crawlOneAirline(self, depInfo, arrInfo, startDate):
