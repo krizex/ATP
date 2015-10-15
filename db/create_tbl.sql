@@ -1,4 +1,3 @@
-create database atp;
 
 use atp;
 
