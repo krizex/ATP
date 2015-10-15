@@ -3,6 +3,8 @@ from airport import getAllAirport
 import sys
 from data_process import processDataByFile
 import datetime
+from dbc import DB
+from qunar_lowest import QunarLowest
 
 def searchRange(casperScript, dep, arr, dateRange):
     curTime = datetime.datetime.today()
@@ -27,7 +29,7 @@ def searchOne(casperScript, dep, arr, depDate):
     ret = processDataByFile("/tmp/searchResult.html", depDate)
     return ret
 
-def main():
+def workQunar():
     if len(sys.argv) != 2:
         print "Usage: {} casperjs_script".format(sys.argv[0])
         return 1
@@ -47,7 +49,11 @@ def main():
     
     return 0
             
-
+def workQunarLowest():
+    db = DB('atp', 'atp', 'atp')
+    q = QunarLowest(db.getConn(), getAllAirport(), 60)
+    q.crawlAllAirlinesWithRetry(5)
+    
 if __name__ == '__main__':
-    main()
+    workQunarLowest()
     

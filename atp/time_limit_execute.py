@@ -3,7 +3,7 @@ import time
 from errcode import ER_TIMEOUT
 
 def signalAlarmHandler(signum, frame):
-    raise Exception("Timed out!")
+    raise Exception("Catch SigAlarm")
 
 signal.signal(signal.SIGALRM, signalAlarmHandler)
     

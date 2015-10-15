@@ -2,6 +2,7 @@ import qunar
 import time
 from dbc import DB
 from flight_info import FlightInfoHandler, FlightInfo
+from errcode import *
 
 def processDataByFile(fileName, depDate):
     curDateTime =  time.localtime(time.time())
@@ -15,7 +16,7 @@ def processDataByFile(fileName, depDate):
     conn = db.getConn()
     if not conn:
         print "connect db failed."
-        return -1
+        return ER_CONN_DB_FAILED
     
     handler = FlightInfoHandler(conn)
     
@@ -23,5 +24,5 @@ def processDataByFile(fileName, depDate):
         flightInfo = FlightInfo(queryDate, queryTime, depDate, rec)
         handler.insertOneRec(flightInfo)
         
-    return 0
+    return ER_SUCC
 
