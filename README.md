@@ -31,7 +31,19 @@ python atp/start_work.py
 ##进一步打算
 利用这些抓取的数据，采用ML的方法做一些预测，譬如：  
 
-1、假如我要购买北京到上海的在指定日期的机票，应该提前多少天购买最划算。
+* 假如我要购买北京到上海的在指定日期的机票，应该提前多少天购买最划算。
+
+##Requirements
+Python package:
+
+*  MySQL-python
+*  beautifulsoup4
+
+casperjs
+
+
+
+
 
 
 
