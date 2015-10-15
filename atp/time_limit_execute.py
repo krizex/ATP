@@ -1,5 +1,6 @@
 import signal
 import time
+from errcode import ER_TIMEOUT
 
 def signalAlarmHandler(signum, frame):
     raise Exception("Timed out!")
@@ -14,8 +15,8 @@ def timeLimitExecute(timeout):
                 ret = func(*args, **kwargs)
                 signal.alarm(0)
             except Exception, msg:
-                print "timeout"
-                return 1
+                print "execute timeout"
+                return ER_TIMEOUT
             
             return ret
         return realFunc
@@ -27,7 +28,7 @@ if __name__ == '__main__':
     class MyTest:
         def __init__(self):
             pass
-        @timeLimitExecute1(10)
+        @timeLimitExecute(10)
         def longTimeCall(self, sleepTime):
             time.sleep(sleepTime)
             
