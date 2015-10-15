@@ -92,6 +92,5 @@ class QunarLowest:
                 
 if __name__ == '__main__':
     db = DB('atp', 'atp', 'atp')
-    q = QunarLowest(db.getConn(), getAllAirport())
-    q.crawlAllAirlines()
-        
+    q = QunarLowest(db.getConn(), getAllAirport(), 60)
+    q.crawlAllAirlinesWithRetry(5)
