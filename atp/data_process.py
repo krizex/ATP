@@ -4,6 +4,8 @@ from dbc import DB
 from flight_info import FlightInfoHandler, FlightInfo
 from errcode import *
 
+g_db = DB('atp', 'atp', 'atp')
+
 def processDataByFile(fileName, depDate):
     curDateTime =  time.localtime(time.time())
     
@@ -12,8 +14,8 @@ def processDataByFile(fileName, depDate):
     
     retList = qunar.analysis(fileName)
     
-    db = DB('atp', 'atp', 'atp')
-    conn = db.getConn()
+    global g_db
+    conn = g_db.getConn()
     if not conn:
         print "connect db failed."
         return ER_CONN_DB_FAILED

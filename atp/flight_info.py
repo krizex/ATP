@@ -1,3 +1,4 @@
+from errcode import *
 
 class FlightInfo:
     def __init__(self, queryDate, queryTime, flightDate, rec):
@@ -35,8 +36,11 @@ class FlightInfoHandler:
         except:
             print "insert failed"
             self.conn.rollback()
+            return ER_INSERT_FAILED
             
         cursor.close()
+        
+        return ER_SUCC
             
 class FlightLowestPriceInfo:
     def __init__(self, queryDate, queryTime, depCode, arrCode, rec):
