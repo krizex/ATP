@@ -12,3 +12,6 @@ def main():
     arrAirportList = getCustomArrAirport()
     
     workSimulateQunar(casperScript, depAirportList, arrAirportList, 60, 5)
+
+if __name__ == '__main__':
+    main()
