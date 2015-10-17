@@ -6,16 +6,16 @@ class FlightInfo:
         self.queryDate = queryDate
         self.queryTime = queryTime
         self.flightDate = flightDate
-        self.flightNo = rec[0].encode('utf8')
-        self.depTime = rec[1].encode('utf8')
-        self.depAirport = rec[2].encode('utf8')
-        self.arrTime = rec[3].encode('utf8')
-        self.arrAirport = rec[4].encode('utf8')
-        self.elapsedTime = rec[5].encode('utf8')
-        self.ptyRate = rec[6].encode('utf8')
-        self.delayTime = rec[7].encode('utf8')
-        self.ticketPrice = rec[8].encode('utf8')
-        
+        self.flightNo, \
+        self.depTime, \
+        self.depAirport, \
+        self.arrTime, \
+        self.arrAirport, \
+        self.elapsedTime, \
+        self.ptyRate, \
+        self.delayTime, \
+        self.ticketPrice = map(lambda x: '' if not x else x.encode('utf8'), rec)
+                
     def asRec(self):
         return (self.queryDate, self.queryTime, self.flightDate, self.flightNo, self.depTime, self.depAirport,
                 self.arrTime, self.arrAirport, self.elapsedTime, self.ptyRate, self.delayTime, self.ticketPrice)
