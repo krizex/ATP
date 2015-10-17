@@ -25,6 +25,8 @@ python atp/start_work.py
 
 仿真用户用到的工具是casperjs，相关脚本在casperjs目录下，相关的使用方法可以在atp/start_work.searchOne中找到
 
+atp/custom目录下定制了一些航线数据的收集
+
 ####方案二
 使用一个更简单的方法，一次性抓取某条航线未来60天的最低票价(但是准确性可能差一些，依赖于网站数据的准确性)。目前采用本方案。
 
