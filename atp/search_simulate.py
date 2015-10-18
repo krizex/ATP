@@ -29,7 +29,7 @@ def searchOne(casperScript, dep, arr, depDate):
         return ret
     
 #     print "Execute command[{}] succeed, Msg: {}".format(cmd, out)
-    ret = processDataByFile("/tmp/searchResult.html", depDate)
+    ret = processDataByFile("/tmp/searchResult.html", depDate, dep[0], arr[0])
     return ret
 
 def workSimulateQunar(casperScript, depAirportList, arrAirportList, dateRange=60, retryTimes=5):

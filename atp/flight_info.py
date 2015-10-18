@@ -1,11 +1,13 @@
 from errcode import *
 
 class FlightInfo:
-    def __init__(self, queryDate, queryTime, flightDate, rec):
+    def __init__(self, queryDate, queryTime, flightDate, depCode, arrCode, rec):
         #flightNo, depTime, depAirport, arrTime, arrAirport, elapsedTime, ptyRate, delayTime, ticketPrice)
         self.queryDate = queryDate
         self.queryTime = queryTime
         self.flightDate = flightDate
+        self.depCode = depCode
+        self.arrCode = arrCode
         self.flightNo, \
         self.depTime, \
         self.depAirport, \
@@ -17,16 +19,24 @@ class FlightInfo:
         self.ticketPrice = map(lambda x: '' if not x else x.encode('utf8'), rec)
                 
     def asRec(self):
-        return (self.queryDate, self.queryTime, self.flightDate, self.flightNo, self.depTime, self.depAirport,
-                self.arrTime, self.arrAirport, self.elapsedTime, self.ptyRate, self.delayTime, self.ticketPrice)
+        return (self.queryDate, self.queryTime, self.flightDate, self.depCode, self.arrCode,
+                self.flightNo, \
+                self.depTime, \
+                self.depAirport, \
+                self.arrTime, \
+                self.arrAirport, \
+                self.elapsedTime, \
+                self.ptyRate, \
+                self.delayTime, \
+                self.ticketPrice)
         
 class FlightInfoHandler:
     def __init__(self, conn):
         self.conn = conn
     
-    INSERT_SQL = "INSERT INTO FLIGHT_INFO (query_date, query_time, flight_date, flight_number, \
+    INSERT_SQL = "INSERT INTO FLIGHT_INFO (query_date, query_time, flight_date, dep_code, arr_code, flight_number, \
                   dep_time, dep_airport, arr_time, arr_airport, elapsed_time, punctuality_rate, \
-                  delay_time, ticket_price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                  delay_time, ticket_price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
                   
     def insertOneRec(self, flightInfo):
         cursor = self.conn.cursor()

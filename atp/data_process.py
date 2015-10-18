@@ -6,7 +6,7 @@ from errcode import *
 
 g_db = DB('atp', 'atp', 'atp')
 
-def processDataByFile(fileName, depDate):
+def processDataByFile(fileName, depDate, depCode, arrCode):
     curDateTime =  time.localtime(time.time())
     
     queryDate = time.strftime('%Y-%m-%d', curDateTime)
@@ -23,7 +23,7 @@ def processDataByFile(fileName, depDate):
     handler = FlightInfoHandler(conn)
     
     for rec in retList:
-        flightInfo = FlightInfo(queryDate, queryTime, depDate, rec)
+        flightInfo = FlightInfo(queryDate, queryTime, depDate, depCode, arrCode, rec)
         handler.insertOneRec(flightInfo)
         
     return ER_SUCC
