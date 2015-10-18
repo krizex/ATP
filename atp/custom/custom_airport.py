@@ -154,11 +154,14 @@ arAddress = ['AKU','AKESU阿克苏',
 import re
 
 def getCustomDepAirport():
-    arAddress = ['NKG','NANJING南京']
+    arAddress = ['NKG','NANJING南京'
+                ,'DLC','DALIAN大连'
+                ,'SHA', 'SHANGHAI上海']
     return getAirport(arAddress)
 
 def getCustomArrAirport():
-    arAddress = ['DLC','DALIAN大连']
+    arAddress = ['DLC','DALIAN大连'
+                ,'TPE','TAIPEI台北' ]
     return getAirport(arAddress)
 
 def getAirport(arAddress):
