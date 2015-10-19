@@ -27,7 +27,7 @@ casper.on('page.resource.requested', function(requestData, request) {
 
 casper.start(queryUrl)
 
-casper.waitWhileSelector('.loading', function() {
+casper.waitWhileSelector('p#flashAdInfo1', function() {
     //this.echo(this.getPageContent())
     fs.write('/tmp/searchResult.html', this.getPageContent(), 'w')
 });

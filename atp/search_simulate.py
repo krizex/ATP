@@ -17,7 +17,7 @@ def searchRange(casperScript, dep, arr, dateRange, retryTimes):
                 break
         
         if ER_SUCC != ret:
-            print "[{}] retry {} times, {} -> {} : {} failed".format(retryTimes, datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), dep[0], arr[0], depTime.strftime("%Y-%m-%d"))
+            print "[{}] retry {} times, {} -> {} : {} failed".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), retryTimes, dep[0], arr[0], depTime.strftime("%Y-%m-%d"))
 
     
 #dep = (depCode, depAirport)
