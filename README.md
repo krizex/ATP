@@ -1,5 +1,24 @@
 # ATP(Air Ticket Price)
 
+
+This is a crawler which grab the flight info from one famous website of China which used to order air tickets. 
+
+The default behavior of this tool is grabing the flight info of recent 60 days. It certainly contains the lowest price of the ticket in which day you want to have your travel. Once you have collected enough ticket info, you can use some machine learning method to forecast the best day to buy your ticket which will get the lowest price.
+
+## Usage
+### Create database
+```
+cd db
+mysql> .create_user.sql
+mysql> .create_tbl.sql
+```
+
+### Execute
+You can add this task to crontab if you want to collect data once a day.
+```
+python atp/start_work.py
+```
+
 这是一个用来抓取国内某知名网站机票数据的工具。
 
 抓取从今天起60天内，国内所有航线的最低票价数据。
@@ -34,6 +53,9 @@ atp/custom目录下定制了一些航线数据的收集
 利用这些抓取的数据，采用ML的方法做一些预测，譬如：  
 
 * 假如我要购买北京到上海的在指定日期的机票，应该提前多少天购买最划算。
+
+## TODO
+1. 增加港澳台机票查询(返回的结果页面的tag与国内机票不同)
 
 ##Requirements
 Python package:
