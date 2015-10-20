@@ -161,7 +161,8 @@ def getCustomDepAirport():
 
 def getCustomArrAirport():
     arAddress = ['DLC','DALIAN大连'
-                ,'TPE','TAIPEI台北' ]
+                #,'TPE','TAIPEI台北' 
+                ]
     return getAirport(arAddress)
 
 def getAirport(arAddress):
