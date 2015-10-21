@@ -1,4 +1,5 @@
 from errcode import *
+from logger import L
 
 class FlightInfo:
     def __init__(self, queryDate, queryTime, flightDate, depCode, arrCode, rec):
@@ -44,7 +45,7 @@ class FlightInfoHandler:
             cursor.execute(self.INSERT_SQL, flightInfo.asRec())
             self.conn.commit()
         except:
-            print "insert failed"
+            L.error("insert failed")
             self.conn.rollback()
             return ER_INSERT_FAILED
             
@@ -97,7 +98,7 @@ class FlightLowestPriceInfoHandler:
             cursor.execute(self.INSERT_SQL, info.asRec())
             self.conn.commit()
         except:
-            print "insert failed"
+            L.error("insert failed")
             self.conn.rollback()
             
         cursor.close()

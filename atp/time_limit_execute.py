@@ -1,6 +1,7 @@
 import signal
 import time
 from errcode import ER_TIMEOUT
+from logger import L
 
 def signalAlarmHandler(signum, frame):
     raise Exception("Catch SigAlarm")
@@ -15,7 +16,7 @@ def timeLimitExecute(timeout):
                 ret = func(*args, **kwargs)
                 signal.alarm(0)
             except Exception, msg:
-                print "execute timeout"
+                L.error("execute timeout")
                 return ER_TIMEOUT
             
             return ret

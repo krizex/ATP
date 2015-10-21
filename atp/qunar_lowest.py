@@ -9,6 +9,7 @@ import time
 from dbc import DB
 from time_limit_execute import timeLimitExecute
 from errcode import *
+from logger import L
 
 class QunarLowest:
     def __init__(self, conn, allAirports, dateRange):
@@ -28,7 +29,7 @@ class QunarLowest:
                 return ER_SUCC
             
             for it in lstCur:
-                print "retry[{}] {} -> {}".format(i, it[0][0], it[1][0])
+                L.info("retry[{}] {} -> {}".format(i, it[0][0], it[1][0]))
                 startDate = datetime.datetime.today() + datetime.timedelta(days=1)
                 if ER_SUCC != self.crawlOneAirline(it[0], it[1], startDate):
                     lstNext.append(it)
@@ -36,7 +37,7 @@ class QunarLowest:
             lstCur = lstNext
             
         for it in lstCur:
-            print "{} -> {} retry {} times failed".format(it[0][0], it[1][0], retryTime)
+            L.error("{} -> {} retry {} times failed".format(it[0][0], it[1][0], retryTime))
         
     def crawlAllAirlines(self):
         for i in range(len(self.allAirports)):
@@ -62,14 +63,14 @@ class QunarLowest:
         try:
             r = requests.get(url, timeout=10)
         except:
-            print "[{}] {} -> {} timeout, url={}".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0], url)
+            L.error("{} -> {} timeout, url={}".format(depInfo[0], arrInfo[0], url))
             return ER_REQUEST_TIMEOUT
             
         if r.status_code != 200:
-            print "[{}] {} -> {} failed, url={}".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0], url)
+            L.error("{} -> {} failed, url={}".format(depInfo[0], arrInfo[0], url))
             return ER_RESPONSE_FAIL
         
-        print "[{}] {} -> {}".format(datetime.datetime.today().strftime("%Y-%m-%d %H:%M:%S"), depInfo[0], arrInfo[0])
+        L.info("{} -> {}".format(depInfo[0], arrInfo[0]))
         bs = BeautifulSoup(r.text, 'lxml-xml')
         resultData = bs.find('ResultData')
         for airline in resultData.children:

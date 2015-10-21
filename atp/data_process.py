@@ -3,6 +3,7 @@ import time
 from dbc import DB
 from flight_info import FlightInfoHandler, FlightInfo
 from errcode import *
+from logger import L
 
 g_db = DB('atp', 'atp', 'atp')
 
@@ -17,7 +18,7 @@ def processDataByFile(fileName, depDate, depCode, arrCode):
     global g_db
     conn = g_db.getConn()
     if not conn:
-        print "connect db failed."
+        L.error("connect db failed.")
         return ER_CONN_DB_FAILED
     
     handler = FlightInfoHandler(conn)
