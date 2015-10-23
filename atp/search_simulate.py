@@ -26,10 +26,12 @@ def searchOne(casperScript, dep, arr, depDate):
     cmd = "casperjs '{}' '{}' '{}' '{}' '{}' '{}'".format(casperScript, dep[0], dep[1], arr[0], arr[1], depDate)
     ret, out = commands.getstatusoutput(cmd)
     if ret != ER_SUCC:
-        L.error("Execute command[{}] failed, errCode: {}, errMsg: {}".format(cmd, ret, out))
+#         L.error("Execute command[{}] failed, errCode: {}, errMsg: {}".format(cmd, ret, out))
+        L.error("Execute command[{}] failed, errCode: {}".format(cmd, ret))
         return ret
     
-    L.debug("Execute command[{}] succeed, Msg: {}".format(cmd, out))
+#     L.debug("Execute command[{}] succeed, Msg: {}".format(cmd, out))
+    L.debug("Execute command[{}] succeed".format(cmd))
     ret = processDataByFile("/tmp/searchResult.html", depDate, dep[0], arr[0])
     return ret
 
