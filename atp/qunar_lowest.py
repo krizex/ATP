@@ -29,7 +29,7 @@ class QunarLowest:
                 return ER_SUCC
             
             for it in lstCur:
-                L.info("retry[{}] {} -> {}".format(i, it[0][0], it[1][0]))
+                L.info("retry[%d] %s -> %s", i, it[0][0], it[1][0])
                 startDate = datetime.datetime.today() + datetime.timedelta(days=1)
                 if ER_SUCC != self.crawlOneAirline(it[0], it[1], startDate):
                     lstNext.append(it)
@@ -37,7 +37,7 @@ class QunarLowest:
             lstCur = lstNext
             
         for it in lstCur:
-            L.error("{} -> {} retry {} times failed".format(it[0][0], it[1][0], retryTime))
+            L.error("%s -> %s retry %d times failed", it[0][0], it[1][0], retryTime)
         
     def crawlAllAirlines(self):
         for i in range(len(self.allAirports)):
@@ -63,14 +63,14 @@ class QunarLowest:
         try:
             r = requests.get(url, timeout=10)
         except:
-            L.error("{} -> {} timeout, url={}".format(depInfo[0], arrInfo[0], url))
+            L.error("%s -> %s timeout, url=%s", depInfo[0], arrInfo[0], url)
             return ER_REQUEST_TIMEOUT
             
         if r.status_code != 200:
-            L.error("{} -> {} failed, url={}".format(depInfo[0], arrInfo[0], url))
+            L.error("%s -> %s failed, url=%s", depInfo[0], arrInfo[0], url)
             return ER_RESPONSE_FAIL
         
-        L.info("{} -> {}".format(depInfo[0], arrInfo[0]))
+        L.info("%s -> %s", depInfo[0], arrInfo[0])
         bs = BeautifulSoup(r.text, 'lxml-xml')
         resultData = bs.find('ResultData')
         for airline in resultData.children:
