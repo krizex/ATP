@@ -1,4 +1,5 @@
 import logging
+import sys
 
 def getLogger(appName):
     logger = logging.getLogger(appName)
@@ -10,7 +11,7 @@ def getLogger(appName):
     fhRun = logging.FileHandler(appName + "_run.log")
     fhRun.setLevel(logging.ERROR)
     
-    ch = logging.StreamHandler()
+    ch = logging.StreamHandler(sys.stdout)
     ch.setLevel(logging.DEBUG)
     
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s') 
