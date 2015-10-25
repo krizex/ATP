@@ -14,11 +14,11 @@ def searchRange(casperScript, dep, arr, dateRange, retryTimes):
         for j in range(retryTimes):
             ret = searchOne(casperScript, dep, arr, depTime.strftime("%Y-%m-%d"))
             if ret == ER_SUCC:
-                L.info("%s -> %s  %s", dep[0], arr[0], depTime.strftime("%Y-%m-%d"))
+                L.info("{} -> {}  {}", dep[0], arr[0], depTime.strftime("%Y-%m-%d"))
                 break
         
         if ER_SUCC != ret:
-            L.error("retry %d times, %s -> %s  %s failed", retryTimes, dep[0], arr[0], depTime.strftime("%Y-%m-%d"))
+            L.error("retry {} times, {} -> {}  {} failed", retryTimes, dep[0], arr[0], depTime.strftime("%Y-%m-%d"))
 
     
 #dep = (depCode, depAirport)
@@ -27,11 +27,11 @@ def searchOne(casperScript, dep, arr, depDate):
     ret, out = commands.getstatusoutput(cmd)
     if ret != ER_SUCC:
 #         L.error("Execute command[{}] failed, errCode: {}, errMsg: {}".format(cmd, ret, out))
-        L.error("Execute command[%s] failed, errCode: %d", cmd, ret)
+        L.error("Execute command[{}] failed, errCode: {}", cmd, ret)
         return ret
     
 #     L.debug("Execute command[{}] succeed, Msg: {}".format(cmd, out))
-    L.debug("Execute command[%s] succeed", cmd)
+    L.debug("Execute command[{}] succeed", cmd)
     ret = processDataByFile("/tmp/searchResult.html", depDate, dep[0], arr[0])
     return ret
 
