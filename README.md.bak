@@ -1,7 +1,7 @@
 # ATP(Air Ticket Price)
 
 =====
-[![Build Status](https://travis-ci.org/krizex/ATP.svg)](https://travis-ci.org/krizex/ATP)
+[![alt text](https://travis-ci.org/krizex/ATP.svg "Build status")](https://travis-ci.org/houtianze/bypy)
 =====
 
 This is a crawler which grab the flight info from one famous website of China which used to order air tickets. 
