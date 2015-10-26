@@ -15,7 +15,7 @@ def timeLimitExecute(timeout):
             try:
                 ret = func(*args, **kwargs)
                 signal.alarm(0)
-            except Exception, msg:
+            except Exception:
                 L.error("execute timeout")
                 return ER_TIMEOUT
             

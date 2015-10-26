@@ -1,9 +1,8 @@
 import datetime
-from errcode import *
 import commands
 from data_process import processDataByFile
-import sys
 from logger import L
+from errcode import ER_SUCC
 
 def searchRange(casperScript, dep, arr, dateRange, retryTimes):
     depTime = datetime.datetime.today()

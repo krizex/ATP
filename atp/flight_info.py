@@ -1,5 +1,5 @@
-from errcode import *
 from logger import L
+from errcode import ER_INSERT_FAILED, ER_SUCC
 
 class FlightInfo:
     def __init__(self, queryDate, queryTime, flightDate, depCode, arrCode, rec):
