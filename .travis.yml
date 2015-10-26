@@ -3,7 +3,7 @@ python:
   - "2.7"
 install: pip install -r requirements.txt
 script:
- - pyflakes atp/qunar_lowest.py
+ - find . -name '*.py' | xargs pyflakes
 notifications:
   email:
     on_success: change # default: change
