@@ -8,8 +8,8 @@ from flight_info import FlightLowestPriceInfoHandler, FlightLowestPriceInfo
 import time
 from dbc import DB
 from time_limit_execute import timeLimitExecute
-from errcode import *
 from logger import L
+from errcode import ER_SUCC, ER_REQUEST_TIMEOUT, ER_RESPONSE_FAIL
 
 class QunarLowest:
     def __init__(self, conn, allAirports, dateRange):

@@ -1,8 +1,7 @@
 # ATP(Air Ticket Price)
 
-=====
 [![Build Status](https://travis-ci.org/krizex/ATP.svg)](https://travis-ci.org/krizex/ATP)
-=====
+-----
 
 This is a crawler which grab the flight info from one famous website of China which used to order air tickets. 
 
@@ -72,7 +71,6 @@ Python package:
 *  lxml
 
 casperjs
-
 
 
 
