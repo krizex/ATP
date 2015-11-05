@@ -9,7 +9,8 @@ def analysis(fileName):
         s = BeautifulSoup(f, 'html.parser')
         sub = s.find(class_='e_fly_lst')
         for airline in sub.children:
-            if 'class' in airline and len(airline['class']) == 1 and airline['class'][0] == u'avt-column':
+            if 'class' in airline.attrs and len(airline['class']) == 1 and airline['class'][0] == u'avt-column':
+                print airline
                 L.debug("{}", airline['id'])
                 info = airline.contents[0].contents
                 L.debug("{}", info)
@@ -21,12 +22,11 @@ def analysis(fileName):
                     ptyRate, delayTime = getPunctualityRateDelayTime(info[5])
                     ticketPrice = getTicketPrice(info[6])
                 except:
-                    L.error("Get info from airline failed.")
+                    L.warn("Get info from airline failed. content = {}", airline)
                     continue
                 
                 rec = (flightNo, depTime, depAirport, arrTime, arrAirport, elapsedTime, ptyRate, delayTime, ticketPrice)
                 retList.append(rec)
-    
     return retList
                 
 #<div class="c1"><div class="vlc-wp"><div class="vlc-ref"></div><div class="vlc-con"><div class="air-wp"><div class="air-row"><div class="a-logo"><img width="24" height="24" title="中国深圳航空公司" alt="中国深圳航空公司" src="http://simg1.qunarzz.com/site/images/airlines/ZH.gif"></div></div><div class="air-row"><div class="a-name">深圳航空</div><div class="a-model"><span class="n">ZH4962</span><span class="n">波音737(中)</span><a class="p-tip-trigger n n-gx"><div class="n-gx-tit">共享</div><div class="p-tips-cont"><div class="p-tips-wrap"><div class="p-tips-arr p-tips-arr-t"><p class="arr-o">◆</p><p class="arr-i">◆</p></div><div class="p-tips-content"><p><span class="bold">主飞航班:</span>中国国航CA8958</p></div></div></div></a></div></div></div></div></div></div>            
@@ -79,4 +79,4 @@ def getTicketPrice(node):
         
 
 if __name__ == '__main__':
-    analysis('../test/qunar.html')
+    analysis('../.testFile/searchResult.html')

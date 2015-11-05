@@ -16,7 +16,7 @@ def processDataByFile(fileName, depDate, depCode, arrCode):
     retList = qunar.analysis(fileName)
     if not retList:
         L.error("Not found airline")
-        
+
     global g_db
     conn = g_db.getConn()
     if not conn:
