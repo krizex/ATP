@@ -8,13 +8,15 @@ from errcode import ER_CONN_DB_FAILED, ER_SUCC
 g_db = DB('atp', 'atp', 'atp')
 
 def processDataByFile(fileName, depDate, depCode, arrCode):
-    curDateTime =  time.localtime(time.time())
+    curDateTime = time.localtime(time.time())
     
     queryDate = time.strftime('%Y-%m-%d', curDateTime)
     queryTime = time.strftime('%H:%M:%S', curDateTime)
     
     retList = qunar.analysis(fileName)
-    
+    if not retList:
+        L.error("Not found airline")
+        
     global g_db
     conn = g_db.getConn()
     if not conn:

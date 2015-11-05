@@ -9,7 +9,7 @@ def getLogger(appName):
     fhDebug.setLevel(logging.DEBUG)
     
     fhRun = logging.FileHandler(appName + "_run.log")
-    fhRun.setLevel(logging.ERROR)
+    fhRun.setLevel(logging.INFO)
     
     ch = logging.StreamHandler(sys.stdout)
     ch.setLevel(logging.DEBUG)

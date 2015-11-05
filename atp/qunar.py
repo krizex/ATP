@@ -21,6 +21,7 @@ def analysis(fileName):
                     ptyRate, delayTime = getPunctualityRateDelayTime(info[5])
                     ticketPrice = getTicketPrice(info[6])
                 except:
+                    L.error("Get info from airline failed.")
                     continue
                 
                 rec = (flightNo, depTime, depAirport, arrTime, arrAirport, elapsedTime, ptyRate, delayTime, ticketPrice)
