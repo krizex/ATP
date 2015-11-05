@@ -7,4 +7,4 @@ cd ~/dev/ATP/launch
 
 #echo "`date +'%Y-%m-%d %H:%M:%S'`" >> tmp.log
 
-python ../atp/start_work.py >> err.log 2>&1
+python ../atp/start_work.py >/dev/null 2>>err.log 
