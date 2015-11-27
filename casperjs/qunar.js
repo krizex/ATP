@@ -31,6 +31,8 @@ casper.start(queryUrl)
 casper.waitWhileSelector('.loading', function() {
     //this.echo(this.getPageContent())
     fs.write('/tmp/searchResult.html', this.getPageContent(), 'w')
-});
+}, function() {
+    console.log('Timeout')
+}, 60000);
 
 casper.run();

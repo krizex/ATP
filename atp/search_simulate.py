@@ -26,7 +26,7 @@ def searchOne(casperScript, dep, arr, depDate):
     ret, out = commands.getstatusoutput(cmd)
     if ret != ER_SUCC:
 #         L.error("Execute command[{}] failed, errCode: {}, errMsg: {}".format(cmd, ret, out))
-        L.error("Execute command[{}] failed, errCode: {}", cmd, ret)
+        L.error("Execute command[{}] failed, errCode: {}, errMsg:{}", cmd, ret, out)
         return ret
     
 #     L.debug("Execute command[{}] succeed, Msg: {}".format(cmd, out))
