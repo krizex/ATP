@@ -24,8 +24,7 @@ def statis4FlightInfo(duration):
     print "FlightInfo:"
     for i in range(duration, -1, -1):
         queryDate = (datetime.datetime.today() - datetime.timedelta(days=i)).strftime("%Y-%m-%d")
-        filters = {'query_date':queryDate}
-        recNum = handler.getRecordNum(filters)
+        recNum = handler.getRecordNum(query_date=queryDate)
         print "{} : {}".format(queryDate, recNum)
 
 def statis4FlightLowestPriceInfo(duration):
@@ -38,8 +37,7 @@ def statis4FlightLowestPriceInfo(duration):
     print "FlightLowestPriceInfo:"
     for i in range(duration, -1, -1):
         queryDate = (datetime.datetime.today() - datetime.timedelta(days=i)).strftime("%Y-%m-%d")
-        filters = {'query_date':queryDate}
-        recNum = handler.getRecordNum(filters)
+        recNum = handler.getRecordNum(query_date=queryDate)
         print "{} : {}".format(queryDate, recNum)
 
 def main():
