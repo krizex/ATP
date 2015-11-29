@@ -1,5 +1,5 @@
 from logger import L
-from errcode import ER_INSERT_FAILED, ER_SUCC, ER_QUERY_FAILED
+from errcode import ER_INSERT_FAILED, ER_SUCC
 
 
 def getRecordNumSQL(tableName, **filters):

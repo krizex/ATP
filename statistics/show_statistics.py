@@ -3,7 +3,7 @@ import os
 import sys
 import datetime
 from atp.errcode import ER_CONN_DB_FAILED
-from atp.flight_info import getRecordNumSQL, FlightInfoHandler, FlightLowestPriceInfoHandler
+from atp.flight_info import FlightInfoHandler, FlightLowestPriceInfoHandler
 from atp.data_process import g_db
 from atp.logger import L
 
