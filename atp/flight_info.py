@@ -1,5 +1,36 @@
 from logger import L
-from errcode import ER_INSERT_FAILED, ER_SUCC
+from errcode import ER_INSERT_FAILED, ER_SUCC, ER_QUERY_FAILED
+
+
+def getRecordNumSQL(tableName, **filters):
+        QUERY_SQL = "SELECT COUNT(*) FROM {}".format(tableName)
+        filterSize = len(filters)
+        if filterSize == 1:
+            for key in filters:
+                QUERY_SQL += " " + " ".join(("WHERE", key, "=", filters[key]))
+        elif filterSize > 1:
+            flag = True
+            for key in filters:
+                if flag:
+                    QUERY_SQL += " " + " ".join(("WHERE", key, "=", filters[key]))
+                    flag = False
+                else:
+                    QUERY_SQL += " " + " ".join(("AND", key, "=", filters[key]))
+
+        return QUERY_SQL
+
+def getRecordNum(cursor, QUERY_SQL):
+    try:
+        cursor.execute(QUERY_SQL)
+        recNum = cursor.fetchone()[0]
+    except Exception as e:
+        L.error("query record number failed")
+        raise e
+    finally:
+        cursor.close()
+
+    return recNum
+
 
 class FlightInfo:
     def __init__(self, queryDate, queryTime, flightDate, depCode, arrCode, rec):
@@ -7,6 +38,7 @@ class FlightInfo:
         self.queryDate = queryDate
         self.queryTime = queryTime
         self.flightDate = flightDate
+
         self.depCode = depCode
         self.arrCode = arrCode
         self.flightNo, \
@@ -52,6 +84,11 @@ class FlightInfoHandler:
         cursor.close()
         
         return ER_SUCC
+
+    def getRecordNum(self, **filters):
+        return getRecordNum(self.conn.cursor(), getRecordNumSQL("FLIGHT_INFO", **filters))
+
+
             
 class FlightLowestPriceInfo:
     def __init__(self, queryDate, queryTime, depCode, arrCode, rec):
@@ -102,3 +139,6 @@ class FlightLowestPriceInfoHandler:
             self.conn.rollback()
             
         cursor.close()
+
+    def getRecordNum(self, **filters):
+        return getRecordNum(self.conn.cursor(), getRecordNumSQL("FLIGHT_LOWEST_PRICE_INFO", **filters))

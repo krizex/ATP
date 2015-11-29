@@ -8,6 +8,8 @@ def analysis(fileName):
     with open(fileName) as f:
         s = BeautifulSoup(f, 'html.parser')
         sub = s.find(class_='e_fly_lst')
+        if not sub:
+            return None
         for airline in sub.children:
             if 'class' in airline.attrs and len(airline['class']) == 1 and airline['class'][0] == u'avt-column':
                 print airline
