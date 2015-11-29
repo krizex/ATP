@@ -4,25 +4,29 @@ from errcode import ER_INSERT_FAILED, ER_SUCC, ER_QUERY_FAILED
 
 def getRecordNumSQL(tableName, **filters):
         QUERY_SQL = "SELECT COUNT(*) FROM {}".format(tableName)
+        valueList = []
         filterSize = len(filters)
         if filterSize == 1:
             for key in filters:
-                QUERY_SQL += " " + " ".join(("WHERE", key, "=", filters[key]))
+                QUERY_SQL += " " + " ".join(("WHERE", key, "=", "%s"))
+                valueList.append(filters[key])
         elif filterSize > 1:
             flag = True
             for key in filters:
                 if flag:
-                    QUERY_SQL += " " + " ".join(("WHERE", key, "=", filters[key]))
                     flag = False
+                    QUERY_SQL += " " + " ".join(("WHERE", key, "=", "%s"))
+                    valueList.append(filters[key])
                 else:
-                    QUERY_SQL += " " + " ".join(("AND", key, "=", filters[key]))
+                    QUERY_SQL += " " + " ".join(("AND", key, "=", "%s"))
+                    valueList.append(filters[key])
 
         print QUERY_SQL
-        return QUERY_SQL
+        return QUERY_SQL, valueList
 
 def getRecordNum(cursor, QUERY_SQL):
     try:
-        cursor.execute(QUERY_SQL)
+        cursor.execute(QUERY_SQL[0], QUERY_SQL[1])
         recNum = cursor.fetchone()[0]
     except Exception as e:
         L.error("query record number failed")
