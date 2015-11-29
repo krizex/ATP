@@ -21,7 +21,6 @@ def getRecordNumSQL(tableName, **filters):
                     QUERY_SQL += " " + " ".join(("AND", key, "=", "%s"))
                     valueList.append(filters[key])
 
-        print QUERY_SQL
         return QUERY_SQL, valueList
 
 def getRecordNum(cursor, QUERY_SQL):
