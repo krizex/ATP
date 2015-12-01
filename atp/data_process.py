@@ -1,4 +1,4 @@
-import atp.qunar
+from atp import qunar
 import time
 from atp.dbc import DB
 from atp.flight_info import FlightInfoHandler, FlightInfo
