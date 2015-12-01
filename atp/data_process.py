@@ -1,9 +1,9 @@
-import qunar
+import atp.qunar
 import time
-from dbc import DB
-from flight_info import FlightInfoHandler, FlightInfo
-from logger import L
-from errcode import ER_CONN_DB_FAILED, ER_SUCC
+from atp.dbc import DB
+from atp.flight_info import FlightInfoHandler, FlightInfo
+from atp.logger import L
+from atp.errcode import ER_CONN_DB_FAILED, ER_SUCC
 
 g_db = DB('atp', 'atp', 'atp')
 

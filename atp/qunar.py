@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
-from logger import L
+from atp.logger import L
 
 def analysis(fileName):
     retList = []

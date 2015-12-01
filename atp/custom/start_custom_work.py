@@ -1,6 +1,7 @@
 import sys
-from custom.custom_airport import getCustomArrAirport, getCustomDepAirport
-from search_simulate import workSimulateQunar
+from atp.custom.custom_airport import getCustomArrAirport, getCustomDepAirport
+from atp.search_simulate import workSimulateQunar
+
 
 def main():
     if len(sys.argv) != 2:

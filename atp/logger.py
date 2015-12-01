@@ -1,4 +1,4 @@
-from log import logger_manager
+from atp.log import logger_manager
 import logging
 
 # http://stackoverflow.com/questions/13131400/logging-variable-data-with-new-format-string

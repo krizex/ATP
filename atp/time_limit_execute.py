@@ -1,7 +1,7 @@
 import signal
 import time
-from errcode import ER_TIMEOUT
-from logger import L
+from atp.errcode import ER_TIMEOUT
+from atp.logger import L
 
 def signalAlarmHandler(signum, frame):
     raise Exception("Catch SigAlarm")
