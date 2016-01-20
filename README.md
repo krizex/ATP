@@ -11,8 +11,8 @@ The default behavior of this tool is grabing the flight info of recent 60 days. 
 ### Create database
 ```
 cd db
-mysql> .create_user.sql
-mysql> .create_tbl.sql
+mysql> source create_user.sql
+mysql> source create_tbl.sql
 ```
 
 ### Execute
@@ -33,8 +33,8 @@ python atp/start_work.py
 ### 创建数据库
 ```
 cd db
-mysql> .create_user.sql
-mysql> .create_tbl.sql
+mysql> source create_user.sql
+mysql> source create_tbl.sql
 ```
 
 ### 执行脚本
