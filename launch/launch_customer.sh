@@ -3,7 +3,6 @@
 . ~/.bashrc
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 
-cd ~/dev/ATP/launch
-export PYTHONPATH="`pwd`/../atp"
+cd ~/dev/ATP
 
-python ../atp/custom/start_custom_work.py ../casperjs/qunar.js > /dev/null 2>>err_custom.log 
+python -m atp.custom.start_custom_work casperjs/qunar.js > /dev/null 2>>launch/err_custom.log 
