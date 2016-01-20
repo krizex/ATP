@@ -1,6 +1,6 @@
 create database atp;
 
-create user atp idetified by 'atp';
+create user atp identified by 'atp';
 
 grant all on atp.* to atp;
 
