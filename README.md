@@ -11,8 +11,8 @@ The default behavior of this tool is grabing the flight info of recent 60 days. 
 ### Create database
 ```
 cd db
-mysql> .create_user.sql
-mysql> .create_tbl.sql
+mysql> \. create_user.sql
+mysql> \. create_tbl.sql
 ```
 
 ### Execute
