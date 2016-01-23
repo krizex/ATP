@@ -62,7 +62,8 @@ class QunarLowest:
 #         print url
         try:
             r = requests.get(url, timeout=10)
-        except:
+        except Exception as e:
+            L.error(e)
             L.error("{} -> {} timeout, url={}", depInfo[0], arrInfo[0], url)
             return ER_REQUEST_TIMEOUT
             

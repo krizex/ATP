@@ -1,8 +1,5 @@
 #!/bin/bash
 
-. ~/.bashrc
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
-
 cd ~/dev/ATP
 
 #echo "`date +'%Y-%m-%d %H:%M:%S'`" >> tmp.log
