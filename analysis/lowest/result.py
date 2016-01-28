@@ -23,9 +23,10 @@ class ResultMap(object):
             self.result[date_delta] = m
 
     def analysis(self):
+        print 'delta_day    avg_price    query_time'
         for i in range(60):
             if i not in self.result:
                 continue
             m = self.result[i]
-            print '{}    {}'.format(i, m[0]/m[1])
+            print '{}    {}    {}'.format(i, m[0]/m[1], m[1])
 
