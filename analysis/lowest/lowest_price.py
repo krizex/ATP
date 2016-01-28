@@ -18,7 +18,7 @@ def analysis_lowest():
     conn = db.getConn()
     cursor = conn.cursor()
     cursor.execute('select * from FLIGHT_LOWEST_PRICE_INFO')
-    print cursor.rowcount
+    # print cursor.rowcount
     while True:
         result = cursor.fetchone()
         # print result
