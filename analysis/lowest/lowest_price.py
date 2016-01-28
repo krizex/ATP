@@ -21,19 +21,16 @@ def analysis_lowest():
     print cursor.rowcount
     while True:
         result = cursor.fetchone()
-        print result
+        # print result
         if not result:
             break
 
-        query_date = result[0]
-        dep_date = result[4]
-        price = result[10]
+        query_date = result[1]
+        dep_date = result[5]
+        price = result[11]
         result_map.add((dep_date - query_date).days, price)
-        break
 
     result_map.analysis()
-
-
 
 if __name__ == '__main__':
     analysis_lowest()
