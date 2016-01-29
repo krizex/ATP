@@ -17,7 +17,7 @@ def analysis_lowest():
     db = DB('atp', 'atp', 'atp')
     conn = db.getConn()
     cursor = conn.cursor()
-    cursor.execute('select * from FLIGHT_LOWEST_PRICE_INFO')
+    cursor.execute("select * from FLIGHT_LOWEST_PRICE_INFO_ANALYSIS where dep_code='DLC' and arr_code='NKG'")
     # print cursor.rowcount
     while True:
         result = cursor.fetchone()
@@ -26,8 +26,8 @@ def analysis_lowest():
             break
 
         query_date = result[1]
-        dep_date = result[5]
-        price = result[11]
+        dep_date = result[4]
+        price = result[5]
         result_map.add((dep_date - query_date).days, price)
 
     result_map.analysis()
