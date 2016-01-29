@@ -12,12 +12,12 @@ Created on 01/28/2016
 """
 
 
-def analysis_lowest():
+def analysis_lowest(dep_code, arr_code):
     result_map = ResultMap()
     db = DB('atp', 'atp', 'atp')
     conn = db.getConn()
     cursor = conn.cursor()
-    cursor.execute("select * from FLIGHT_LOWEST_PRICE_INFO_ANALYSIS where dep_code='DLC' and arr_code='NKG'")
+    cursor.execute("select * from FLIGHT_LOWEST_PRICE_INFO_ANALYSIS where dep_code='%s' and arr_code='%s'" % (dep_code, arr_code))
     # print cursor.rowcount
     while True:
         result = cursor.fetchone()
@@ -30,8 +30,11 @@ def analysis_lowest():
         price = result[5]
         result_map.add((dep_date - query_date).days, price)
 
+    print 'FROM:%s    TO:%s' % (dep_code, arr_code)
     result_map.analysis()
 
 if __name__ == '__main__':
-    analysis_lowest()
+    analysis_lowest('DLC', 'NKG')
+    analysis_lowest('NKG', 'DLC')
+
 
