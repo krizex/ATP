@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import sys
+
 from analysis.lowest.result import ResultMap
 from atp.dbc import DB
 
@@ -33,8 +35,19 @@ def analysis_lowest(dep_code, arr_code):
     print 'FROM:%s    TO:%s' % (dep_code, arr_code)
     result_map.analysis()
 
+
+def print_usage():
+    print """Usage:
+    python -m analysis.lowest.lowest_price <FROM> <TO>
+    """
+
 if __name__ == '__main__':
-    analysis_lowest('DLC', 'NKG')
-    analysis_lowest('NKG', 'DLC')
+    if len(sys.argv) != 3:
+        print_usage()
+        exit(1)
+
+    from_code = sys.argv[1]
+    to_code = sys.argv[2]
+    analysis_lowest(from_code, to_code)
 
 
